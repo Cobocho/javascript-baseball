@@ -27,12 +27,12 @@ class TargetNumber {
 
 	#validate(value) {
 		if (typeof value !== 'number') {
-			throw new Error(ERROR_MESSAGE.NOT_NUMBER('Target Number'));
+			throw new Error(ERROR_MESSAGE.NOT_NUMBER('TargetNumber'));
 		}
 		const min = TargetNumber.MIN;
 		const max = TargetNumber.MAX;
 		if (isOutOfRange(value, min, max)) {
-			throw new Error(ERROR_MESSAGE.OUT_OF_RANGE({ target: 'Target Number', min, max }));
+			throw new Error(ERROR_MESSAGE.OUT_OF_RANGE({ target: 'TargetNumber', min, max }));
 		}
 	}
 
