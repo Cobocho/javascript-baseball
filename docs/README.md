@@ -12,6 +12,11 @@
 
   - [x] 기능 구현
     - [x] Answer는 생성시 TargetNumber 3개를 소유한다.
+    - [ ] contains 메서드는 입력받은 TargetNumber 인스턴스가 포함되었는지 확인한다.
+      - [ ] 인자가 TargetNumber 아닐 시 에러가 발생한다.
+    - [ ] match 메서드는 입력받은 TargetNumber 인스턴스가 입력받은 index에 위치하는지 확인한다.
+      - [ ] 인자가 TargetNumber 인스턴스 아닐 시 에러가 발생한다.
+      - [ ] index가 숫자가 아닐 시 에러가 발생한다.
 
 - [ ] UserAnswer 도메인 구현
   - [ ] 기능 구현
