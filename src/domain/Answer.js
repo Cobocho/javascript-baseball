@@ -15,6 +15,10 @@ class Answer {
 		this.#setAnswer();
 	}
 
+	get numbers() {
+		return this.#numbers;
+	}
+
 	#addNumbers(numbers) {
 		this.#numbers = numbers.map((v) => TargetNumber.valueOf(v));
 	}
@@ -27,8 +31,29 @@ class Answer {
 		);
 	}
 
-	get numbers() {
-		return this.#numbers;
+	contains(targetNumber) {
+		this.#validateContains(targetNumber);
+		return this.#numbers.some((v) => v === targetNumber);
+	}
+
+	#validateContains(targetNumber) {
+		if (!(targetNumber instanceof TargetNumber)) {
+			throw new Error(ERROR_MESSAGE.ANSWER.NOT_TARGET_NUMBER_INSTANCE);
+		}
+	}
+
+	match(targetNumber, index) {
+		this.#validateMatch(targetNumber, index);
+		return this.#numbers[index] === targetNumber;
+	}
+
+	#validateMatch(targetNumber, index) {
+		if (!(targetNumber instanceof TargetNumber)) {
+			throw new Error(ERROR_MESSAGE.ANSWER.NOT_TARGET_NUMBER_INSTANCE);
+		}
+		if (typeof index !== 'number') {
+			throw new Error(ERROR_MESSAGE.ANSWER.INVALID_INDEX);
+		}
 	}
 }
 
