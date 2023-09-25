@@ -23,6 +23,10 @@ const ERROR_MESSAGE = Object.freeze({
 	USER_ANSWER: {
 		INVALID_ANSWER: 'Answer 인스턴스를 입력해주세요!',
 	},
+
+	RETRY_COMMAND: {
+		INVALID_COMMAND: '유효하지 않은 재시작 코드입니다!',
+	},
 });
 
 module.exports = {
