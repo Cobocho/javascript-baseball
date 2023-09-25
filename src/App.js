@@ -1,4 +1,5 @@
 const { ERROR_MESSAGE } = require('./constants/error');
+const { GAME_CONFIG } = require('./constants/game-config');
 const { Answer, UserAnswer } = require('./domain');
 const { InputView, OutputView } = require('./view');
 const { Console } = require('@woowacourse/mission-utils');
@@ -57,7 +58,7 @@ class App {
 	}
 
 	#validateRetryCommand(retryCommand) {
-		if (![1, 2].includes(retryCommand)) {
+		if (!Object.values(GAME_CONFIG.RESTART_COMMANDS).includes(retryCommand)) {
 			throw new Error(ERROR_MESSAGE.RETRY_COMMAND.INVALID_COMMAND);
 		}
 	}
@@ -66,7 +67,7 @@ class App {
 		const retryCommand = Number(input.trim());
 		this.#validateRetryCommand(retryCommand);
 
-		if (retryCommand === 1) {
+		if (retryCommand === GAME_CONFIG.RESTART_COMMANDS.RESTART) {
 			this.restartGame();
 			return;
 		}

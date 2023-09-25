@@ -11,7 +11,7 @@ const ERROR_MESSAGE = Object.freeze({
 	},
 
 	ANSWER: {
-		INVALID_QUANTITY: '3개의 숫자를 입력해주세요!',
+		INVALID_QUANTITY: `3개의 숫자를 입력해주세요!`,
 		DUPLICATED_NUMBER: '중복된 숫자가 존재합니다!',
 
 		// 🛠️ 개발용 디버깅 에러코드

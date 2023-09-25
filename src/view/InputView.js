@@ -1,12 +1,13 @@
 const { Console } = require('@woowacourse/mission-utils');
+const { MESSAGES } = require('../constants/messages');
 
 class InputView {
 	getUserAnswer(cb) {
-		Console.readLine('숫자를 입력해주세요 : ', cb);
+		Console.readLine(MESSAGES.ENTER_NUMBERS, cb);
 	}
 
 	getRestartCommand(cb) {
-		Console.readLine('게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.', cb);
+		Console.readLine(MESSAGES.ENTER_RESTART_COMMAND, cb);
 	}
 }
 
