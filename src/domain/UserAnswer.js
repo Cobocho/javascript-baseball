@@ -4,28 +4,28 @@ const { Answer } = require('./Answer');
 class UserAnswer {
 	#answer;
 
-	constructor(numbers) {
-		this.#validate(numbers);
-		this.#answer = new Answer(numbers);
-	}
+	#strike = 0;
 
-	#validate(numbers) {
-		if (!Array.isArray(numbers)) {
-			throw new Error(ERROR_MESSAGE.ANSWER.NO_ARRAY_INPUT);
-		}
-		if (numbers.length !== Answer.SIZE) {
-			throw new Error(ERROR_MESSAGE.ANSWER.INVALID_QUANTITY);
-		}
-		if (new Set(numbers).size !== Answer.SIZE) {
-			throw new Error(ERROR_MESSAGE.ANSWER.DUPLICATED_NUMBER);
-		}
-		if (numbers.some((v) => typeof v !== 'number')) {
-			throw new Error(ERROR_MESSAGE.COMMON.NOT_NUMBER);
-		}
+	#ball = 0;
+
+	constructor(numbers) {
+		this.#answer = new Answer(numbers);
 	}
 
 	get answer() {
 		return this.#answer;
+	}
+
+	computeResult(answer) {
+		this.#answer.numbers.forEach((targetNumber, index) => {
+			if (answer.contains(targetNumber, index)) {
+				this.#strike += 1;
+				return;
+			}
+			if (answer.contains(targetNumber)) {
+				this.#ball += 1;
+			}
+		});
 	}
 }
 

@@ -8,11 +8,27 @@ class Answer {
 	#numbers = [];
 
 	constructor(numbers) {
-		if (numbers) {
+		if (typeof numbers !== 'undefined') {
+			this.#validate(numbers);
 			this.#addNumbers(numbers);
 			return;
 		}
 		this.#setAnswer();
+	}
+
+	#validate(numbers) {
+		if (!Array.isArray(numbers)) {
+			throw new Error(ERROR_MESSAGE.ANSWER.NO_ARRAY_INPUT);
+		}
+		if (numbers.length !== Answer.SIZE) {
+			throw new Error(ERROR_MESSAGE.ANSWER.INVALID_QUANTITY);
+		}
+		if (new Set(numbers).size !== Answer.SIZE) {
+			throw new Error(ERROR_MESSAGE.ANSWER.DUPLICATED_NUMBER);
+		}
+		if (numbers.some((v) => typeof v !== 'number')) {
+			throw new Error(ERROR_MESSAGE.COMMON.NOT_NUMBER);
+		}
 	}
 
 	get numbers() {
@@ -24,7 +40,7 @@ class Answer {
 	}
 
 	#setAnswer() {
-		Random.pickUniqueNumbersInRange(Answer.SIZE, TargetNumber.MIN, TargetNumber.MAX).forEach(
+		Random.pickUniqueNumbersInRange(TargetNumber.MIN, TargetNumber.MAX, Answer.SIZE).forEach(
 			(v) => {
 				this.#numbers.push(TargetNumber.valueOf(v));
 			}
