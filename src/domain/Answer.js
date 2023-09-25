@@ -40,11 +40,17 @@ class Answer {
 	}
 
 	#setAnswer() {
-		Random.pickUniqueNumbersInRange(TargetNumber.MIN, TargetNumber.MAX, Answer.SIZE).forEach(
-			(v) => {
-				this.#numbers.push(TargetNumber.valueOf(v));
-			}
-		);
+		this.#addRandomNumber();
+		if (this.#numbers.length !== Answer.SIZE) {
+			this.#setAnswer();
+		}
+	}
+
+	#addRandomNumber() {
+		const randomNumber = Random.pickNumberInRange(TargetNumber.MIN, TargetNumber.MAX);
+		const targetNumber = TargetNumber.valueOf(randomNumber);
+		if (this.#numbers.includes(targetNumber)) return;
+		this.#numbers.push(targetNumber);
 	}
 
 	contains(targetNumber) {

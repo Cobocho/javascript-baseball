@@ -8,6 +8,8 @@ class UserAnswer {
 
 	#ball = 0;
 
+	#isCorrectAnswer = false;
+
 	constructor(numbers) {
 		this.#answer = new Answer(numbers);
 	}
@@ -24,6 +26,10 @@ class UserAnswer {
 		return this.#ball;
 	}
 
+	get isCorrectAnswer() {
+		return this.#isCorrectAnswer;
+	}
+
 	computeResult(answer) {
 		this.#validateComputeResult(answer);
 		this.#answer.numbers.forEach((targetNumber, index) => {
@@ -35,6 +41,13 @@ class UserAnswer {
 				this.#ball += 1;
 			}
 		});
+		this.setIsCorrectAnswer();
+	}
+
+	setIsCorrectAnswer() {
+		if (this.#strike === Answer.SIZE) {
+			this.#isCorrectAnswer = true;
+		}
 	}
 
 	#validateComputeResult(answer) {

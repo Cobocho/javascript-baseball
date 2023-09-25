@@ -13,11 +13,11 @@ class TargetNumber {
 	#value;
 
 	constructor(value) {
-		this.#validate(value);
 		this.#value = value;
 	}
 
 	static valueOf(value) {
+		this.#validate(value);
 		const targetNumber = TargetNumber.#TARGET_NUMBERS[value];
 		if (!targetNumber) {
 			throw new Error(ERROR_MESSAGE.COMMON.MISSING_INSTANCE);
@@ -25,7 +25,7 @@ class TargetNumber {
 		return targetNumber;
 	}
 
-	#validate(value) {
+	static #validate(value) {
 		if (typeof value !== 'number') {
 			throw new Error(ERROR_MESSAGE.COMMON.NO_ARRAY_INPUT);
 		}

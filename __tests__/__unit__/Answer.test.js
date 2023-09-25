@@ -13,7 +13,9 @@ describe('정답 테스트', () => {
 		{ numbers: [9, 4, 5] },
 		{ numbers: [4, 2, 7] },
 	])('Answer는 인자가 없을시 랜덤한 TargetNumber 3개를 소유한다.', ({ numbers }) => {
-		jest.spyOn(Random, 'pickUniqueNumbersInRange').mockReturnValueOnce(numbers);
+		numbers.forEach((v) => {
+			jest.spyOn(Random, 'pickNumberInRange').mockReturnValueOnce(v);
+		});
 		const answer = new Answer();
 
 		expect(answer.numbers).toHaveLength(3);

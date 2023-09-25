@@ -15,7 +15,7 @@ const TARGET_NUMBERS = Object.freeze([
 
 describe('타켓 넘버 테스트', () => {
 	it.each(TARGET_NUMBERS)('타켓 넘버는 property로 1에서 9 사이의 숫자를 가진다.', ({ number }) => {
-		const targetNumber = new TargetNumber(number);
+		const targetNumber = TargetNumber.valueOf(number);
 		expect(targetNumber.value).toBe(number);
 	});
 
@@ -37,7 +37,7 @@ describe('타켓 넘버 예외 처리 테스트', () => {
 		{ input: '10' },
 	])('생성시 숫자가 아닌 $input이(가) 들어올 시 에러가 발생한다.', ({ input }) => {
 		expect(() => {
-			new TargetNumber(input);
+			TargetNumber.valueOf(input);
 		}).toThrow(ERROR_MESSAGE.COMMON.NO_ARRAY_INPUT);
 	});
 
@@ -45,17 +45,8 @@ describe('타켓 넘버 예외 처리 테스트', () => {
 		'생성시 1 ~ 9 사이가 아닌 $input이 들어올 시 에러가 발생한다.',
 		({ input }) => {
 			expect(() => {
-				new TargetNumber(input);
-			}).toThrow(ERROR_MESSAGE.TARGET_NUMBER.OUT_OF_RANGE);
-		}
-	);
-
-	it.each([{ input: undefined }, { input: null }, { input: 10 }, { input: -3 }, { input: -10 }])(
-		'valueOf 사용시 생성하지 않은 인스턴스 입력시 에러가 발생한다.',
-		({ input }) => {
-			expect(() => {
 				TargetNumber.valueOf(input);
-			}).toThrow(ERROR_MESSAGE.COMMON.MISSING_INSTANCE);
+			}).toThrow(ERROR_MESSAGE.TARGET_NUMBER.OUT_OF_RANGE);
 		}
 	);
 });
