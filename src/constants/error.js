@@ -19,6 +19,10 @@ const ERROR_MESSAGE = Object.freeze({
 		NOT_TARGET_NUMBER_INSTANCE: 'TargetNumber 인스턴스를 입력해주세요!',
 		INVALID_INDEX: 'index에 숫자를 입력해주세요!',
 	},
+
+	USER_ANSWER: {
+		INVALID_ANSWER: 'Answer 인스턴스를 입력해주세요!',
+	},
 });
 
 module.exports = {
