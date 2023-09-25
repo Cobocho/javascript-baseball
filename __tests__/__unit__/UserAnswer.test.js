@@ -27,7 +27,7 @@ describe('타켓 넘버 예외 처리 테스트', () => {
 	])('입력받은 숫자가 배열이 아닐 시 에러가 발생한다.', ({ input }) => {
 		expect(() => {
 			new UserAnswer(input);
-		}).toThrow(ERROR_MESSAGE.INVALID_TYPE('정답', '배열'));
+		}).toThrow(ERROR_MESSAGE.ANSWER.NO_ARRAY_INPUT);
 	});
 
 	it.each([{ input: [] }, { input: [1] }, { input: [1, 2] }, { input: [1, 2, 3, 4] }])(
@@ -35,7 +35,7 @@ describe('타켓 넘버 예외 처리 테스트', () => {
 		({ input }) => {
 			expect(() => {
 				new UserAnswer(input);
-			}).toThrow(ERROR_MESSAGE.INVALID_QUANTITY(3, '정답'));
+			}).toThrow(ERROR_MESSAGE.ANSWER.INVALID_QUANTITY);
 		}
 	);
 
@@ -49,7 +49,7 @@ describe('타켓 넘버 예외 처리 테스트', () => {
 	])('입력 받은 값 중에 숫자가 아닌 값이 존재할 시 에러가 발생한다.', ({ input }) => {
 		expect(() => {
 			new UserAnswer(input);
-		}).toThrow(ERROR_MESSAGE.NOT_NUMBER('정답'));
+		}).toThrow(ERROR_MESSAGE.COMMON.NOT_NUMBER);
 	});
 
 	it.each([{ input: [1, 2, 2] }, { input: [3, 9, 3] }, { input: [7, 7, 7] }])(
@@ -57,7 +57,7 @@ describe('타켓 넘버 예외 처리 테스트', () => {
 		({ input }) => {
 			expect(() => {
 				new UserAnswer(input);
-			}).toThrow(ERROR_MESSAGE.DUPLICATED_NUMBER);
+			}).toThrow(ERROR_MESSAGE.ANSWER.DUPLICATED_NUMBER);
 		}
 	);
 });

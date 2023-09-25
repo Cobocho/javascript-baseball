@@ -1,6 +1,5 @@
 const { ERROR_MESSAGE } = require('../constants/error');
 const { Answer } = require('./Answer');
-const { TargetNumber } = require('./TargetNumber');
 
 class UserAnswer {
 	#answer;
@@ -12,16 +11,16 @@ class UserAnswer {
 
 	#validate(numbers) {
 		if (!Array.isArray(numbers)) {
-			throw new Error(ERROR_MESSAGE.INVALID_TYPE('정답', '배열'));
+			throw new Error(ERROR_MESSAGE.ANSWER.NO_ARRAY_INPUT);
 		}
 		if (numbers.length !== Answer.SIZE) {
-			throw new Error(ERROR_MESSAGE.INVALID_QUANTITY(3, '정답'));
+			throw new Error(ERROR_MESSAGE.ANSWER.INVALID_QUANTITY);
 		}
 		if (new Set(numbers).size !== Answer.SIZE) {
-			throw new Error(ERROR_MESSAGE.DUPLICATED_NUMBER);
+			throw new Error(ERROR_MESSAGE.ANSWER.DUPLICATED_NUMBER);
 		}
 		if (numbers.some((v) => typeof v !== 'number')) {
-			throw new Error(ERROR_MESSAGE.NOT_NUMBER('정답'));
+			throw new Error(ERROR_MESSAGE.COMMON.NOT_NUMBER);
 		}
 	}
 

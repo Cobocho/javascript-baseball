@@ -20,19 +20,19 @@ class TargetNumber {
 	static valueOf(value) {
 		const targetNumber = TargetNumber.#TARGET_NUMBERS[value];
 		if (!targetNumber) {
-			throw new Error(ERROR_MESSAGE.MISSING_INSTANCE);
+			throw new Error(ERROR_MESSAGE.COMMON.MISSING_INSTANCE);
 		}
 		return targetNumber;
 	}
 
 	#validate(value) {
 		if (typeof value !== 'number') {
-			throw new Error(ERROR_MESSAGE.NOT_NUMBER('TargetNumber'));
+			throw new Error(ERROR_MESSAGE.COMMON.NO_ARRAY_INPUT);
 		}
 		const min = TargetNumber.MIN;
 		const max = TargetNumber.MAX;
 		if (isOutOfRange(value, min, max)) {
-			throw new Error(ERROR_MESSAGE.OUT_OF_RANGE({ target: 'TargetNumber', min, max }));
+			throw new Error(ERROR_MESSAGE.TARGET_NUMBER.OUT_OF_RANGE);
 		}
 	}
 

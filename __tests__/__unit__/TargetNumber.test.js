@@ -38,7 +38,7 @@ describe('타켓 넘버 예외 처리 테스트', () => {
 	])('생성시 숫자가 아닌 $input이(가) 들어올 시 에러가 발생한다.', ({ input }) => {
 		expect(() => {
 			new TargetNumber(input);
-		}).toThrow(ERROR_MESSAGE.NOT_NUMBER('TargetNumber'));
+		}).toThrow(ERROR_MESSAGE.COMMON.NO_ARRAY_INPUT);
 	});
 
 	it.each([{ input: 0 }, { input: 10 }, { input: 9999 }, { input: -3 }, { input: -10 }])(
@@ -46,7 +46,7 @@ describe('타켓 넘버 예외 처리 테스트', () => {
 		({ input }) => {
 			expect(() => {
 				new TargetNumber(input);
-			}).toThrow(ERROR_MESSAGE.OUT_OF_RANGE({ target: 'TargetNumber', min: 1, max: 9 }));
+			}).toThrow(ERROR_MESSAGE.TARGET_NUMBER.OUT_OF_RANGE);
 		}
 	);
 
@@ -55,7 +55,7 @@ describe('타켓 넘버 예외 처리 테스트', () => {
 		({ input }) => {
 			expect(() => {
 				TargetNumber.valueOf(input);
-			}).toThrow(ERROR_MESSAGE.MISSING_INSTANCE);
+			}).toThrow(ERROR_MESSAGE.COMMON.MISSING_INSTANCE);
 		}
 	);
 });
